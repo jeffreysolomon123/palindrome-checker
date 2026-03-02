@@ -39,17 +39,45 @@ public class PalindromeChecker {
 
     public static void main(String[] args) {
 
-        System.out.println("=== Palindrome Checker App ===");
-
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a sentence: ");
+        System.out.println("=== Palindrome Checker App ===");
+        System.out.print("Enter a word or sentence: ");
         String word = scanner.nextLine();
 
-        if (isStackPalindrome(word)) {
-            System.out.println("It is a palindrome (using stack)");
+        System.out.println("\nChoose method:");
+        System.out.println("1. Simple Palindrome");
+        System.out.println("2. Case-Insensitive Palindrome");
+        System.out.println("3. Ignore spaces & special characters");
+        System.out.println("4. Stack Based Palindrome");
+        System.out.print("Enter your choice: ");
+
+        int choice = scanner.nextInt();
+
+        boolean result = false;
+
+        switch (choice) {
+            case 1:
+                result = isSimplePalindrome(word);
+                break;
+            case 2:
+                result = isCaseInsensitivePalindrome(word);
+                break;
+            case 3:
+                result = isCleanPalindrome(word);
+                break;
+            case 4:
+                result = isStackPalindrome(word);
+                break;
+            default:
+                System.out.println("Invalid choice");
+                System.exit(0);
+        }
+
+        if (result) {
+            System.out.println("It is a palindrome.");
         } else {
-            System.out.println("It is not a palindrome");
+            System.out.println("It is not a palindrome.");
         }
 
         scanner.close();
